@@ -1,0 +1,281 @@
+{
+  "datasets": [
+    {
+      "name": "5b77b2c0",
+      "displayName": "us_crime_data",
+      "queryLines": [
+        "select id,\r\n",
+        "Arrest,\r\n",
+        "FBI_Code,\r\n",
+        "Primary_Type,\r\n",
+        "X_Coordinate,\r\n",
+        "Y_Coordinate,\r\n",
+        "Year,\r\n",
+        "Latitude,\r\n",
+        "Longitude,\r\n",
+        "Location\r\n",
+        "from chicago_crimes5"
+      ],
+      "catalog": "main",
+      "schema": "default"
+    }
+  ],
+  "pages": [
+    {
+      "name": "cceab8df",
+      "displayName": "US CRIME REPORT",
+      "layout": [
+        {
+          "widget": {
+            "name": "crime-locations-frequency",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5b77b2c0",
+                  "fields": [
+                    {
+                      "name": "Location",
+                      "expression": "`Location`"
+                    },
+                    {
+                      "name": "Latitude",
+                      "expression": "`Latitude`"
+                    },
+                    {
+                      "name": "Longitude",
+                      "expression": "`Longitude`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Crime Locations and Frequency",
+                "showTitle": true
+              },
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "Latitude",
+                  "scale": {
+                    "type": "quantitative",
+                    "domain": {
+                      "min": 41.5,
+                      "max": 42
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "Longitude",
+                  "scale": {
+                    "type": "quantitative",
+                    "domain": {
+                      "min": -88,
+                      "max": -87.5
+                    }
+                  }
+                },
+                "color": {
+                  "fieldName": "Location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "total-crimes-per-primary-type",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5b77b2c0",
+                  "fields": [
+                    {
+                      "name": "Primary_Type",
+                      "expression": "`Primary_Type`"
+                    },
+                    {
+                      "name": "count(id)",
+                      "expression": "COUNT(`id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Total crimes per Primary_Type",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Primary_Type",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "year-wise-total-crimes",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5b77b2c0",
+                  "fields": [
+                    {
+                      "name": "Year",
+                      "expression": "`Year`"
+                    },
+                    {
+                      "name": "count(id)",
+                      "expression": "COUNT(`id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Year wise total crimes",
+                "showTitle": true
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "Year",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 15,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "year-wise-crimes-arrest-status",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5b77b2c0",
+                  "fields": [
+                    {
+                      "name": "Arrest",
+                      "expression": "`Arrest`"
+                    },
+                    {
+                      "name": "yearly(Year)",
+                      "expression": "DATE_TRUNC(\"YEAR\", `Year`)"
+                    },
+                    {
+                      "name": "count(id)",
+                      "expression": "COUNT(`id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Year wise crimes differentiated by Arrest status",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "yearly(Year)",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "count(id)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "Arrest",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 23,
+            "width": 12,
+            "height": 7
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
