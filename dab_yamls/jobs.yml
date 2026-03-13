@@ -18,6 +18,31 @@ resources:
 
 resources:
   jobs:
+    Clone_of_New_Job_Feb_15_2026_07_18_PM:
+      name: Clone of New Job Feb 15, 2026, 07:18 PM
+      tasks:
+        - task_key: ttt222
+          notebook_task:
+            notebook_path: ../resources/notebooks/Untitled Notebook 2026-02-17 19_05_36.ipynb
+            base_parameters:
+              notebook_param1: xxx
+            source: WORKSPACE
+        - task_key: tttt444
+          depends_on:
+            - task_key: ttt222
+          notebook_task:
+            notebook_path: ../resources/notebooks/(Clone) Untitled Notebook 2026-02-17 19_05_36.ipynb
+            base_parameters:
+              notebook_param1: zzz
+              notebook_param2: "{{tasks.ttt222.values.fave_food}}"
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
+
+
+resources:
+  jobs:
     New_Job_Feb_15_2026_07_18_PM:
       name: New Job Feb 15, 2026, 07:18 PM
       tasks:
