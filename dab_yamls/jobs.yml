@@ -10,7 +10,7 @@ resources:
           existing_cluster_id: ${var.cluster_id}
         - task_key: Create_1m_candle_Autoloader_notebook
           notebook_task:
-            notebook_path: ../resources/notebooks/Samco Quote Autoloader 2026-03-12 16:23:00.ipynb
+            notebook_path: ../resources/notebooks/Samco Quote Autoloader 2026-03-12 16-23-00.ipynb
             source: WORKSPACE
           existing_cluster_id: ${var.cluster_id}
       queue:
