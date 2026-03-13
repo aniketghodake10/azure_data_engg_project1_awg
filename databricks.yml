@@ -1,5 +1,5 @@
 bundle:
-  name: dabtutorial
+  name: azure_data_engg_project1_awg
 
 include:
   - dab_yamls/*.yml
