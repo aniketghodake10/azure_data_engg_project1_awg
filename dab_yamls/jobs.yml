@@ -38,7 +38,7 @@ resources:
           depends_on:
             - task_key: ttt222
           notebook_task:
-            notebook_path: ../resources/notebooks/(Clone) Untitled Notebook 2026-02-17 19_05_36.iypnb
+            notebook_path: ../resources/notebooks/(Clone) Untitled Notebook 2026-02-17 19_05_36.ipynb
             base_parameters:
               notebook_param1: zzz
               notebook_param2: "{{tasks.ttt222.values.fave_food}}"
