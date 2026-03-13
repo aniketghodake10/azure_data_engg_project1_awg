@@ -16,6 +16,7 @@ resources:
       queue:
         enabled: true
 
+
 resources:
   jobs:
     Clone_of_New_Job_Feb_15_2026_07_18_PM:
@@ -40,9 +41,6 @@ resources:
         enabled: true
       performance_target: PERFORMANCE_OPTIMIZED
 
-
-resources:
-  jobs:
     New_Job_Feb_15_2026_07_18_PM:
       name: New Job Feb 15, 2026, 07:18 PM
       tasks:
@@ -57,7 +55,7 @@ resources:
             - task_key: ttt222
           run_job_task:
             # job_id: 581619746097397
-            job_id: ${resources.jobs.Clone_of_New_Job_Feb_15_2026_07_18_PM.name}
+            job_id: ${resources.jobs.Clone_of_New_Job_Feb_15_2026_07_18_PM.id}
             job_parameters:
               job_param2: "{{tasks.ttt222.values.fave_food}}"
         - task_key: tttt444
