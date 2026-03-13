@@ -57,7 +57,7 @@ resources:
             - task_key: ttt222
           run_job_task:
             # job_id: 581619746097397
-            job_name: ${resources.jobs.Clone_of_New_Job_Feb_15_2026_07_18_PM.name}
+            job_id: ${resources.jobs.Clone_of_New_Job_Feb_15_2026_07_18_PM.name}
             job_parameters:
               job_param2: "{{tasks.ttt222.values.fave_food}}"
         - task_key: tttt444
