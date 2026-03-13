@@ -2,6 +2,9 @@ resources:
   jobs:
     Samco_Streaming_1m_candle_Job_Mar_13_2026_11_06_AM:
       name: Samco Streaming 1m candle Job Mar 13, 2026, 11:06 AM
+      permissions:
+        - user_name: dellcorei9nvidia@outlook.com
+          level: CAN_MANAGE
       tasks:
         - task_key: Samco_streaming_notebook
           notebook_task:
