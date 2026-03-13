@@ -1,0 +1,51 @@
+resources:
+  jobs:
+    Samco_Streaming_1m_candle_Job_Mar_13_2026_11_06_AM:
+      name: Samco Streaming 1m candle Job Mar 13, 2026, 11:06 AM
+      tasks:
+        - task_key: Samco_streaming_notebook
+          notebook_task:
+            notebook_path: ../resources/notebooks/Samco Streaming Websocket 2026-03-12 11_02_02.ipynb
+            source: WORKSPACE
+          existing_cluster_id: ${var.cluster_id}
+        - task_key: Create_1m_candle_Autoloader_notebook
+          notebook_task:
+            notebook_path: ../resources/notebooks/Samco Quote Autoloader 2026-03-12 16:23:00.ipynb
+            source: WORKSPACE
+          existing_cluster_id: ${var.cluster_id}
+      queue:
+        enabled: true
+
+resources:
+  jobs:
+    New_Job_Feb_15_2026_07_18_PM:
+      name: New Job Feb 15, 2026, 07:18 PM
+      tasks:
+        - task_key: ttt222
+          notebook_task:
+            notebook_path: ../resources/notebooks/Untitled Notebook 2026-02-17 19_05_36.ipynb
+            base_parameters:
+              notebook_param1: xxx
+            source: WORKSPACE
+        - task_key: clone_job_run
+          depends_on:
+            - task_key: ttt222
+          run_job_task:
+            job_id: 581619746097397
+            job_parameters:
+              job_param2: "{{tasks.ttt222.values.fave_food}}"
+        - task_key: tttt444
+          depends_on:
+            - task_key: ttt222
+          notebook_task:
+            notebook_path: ../resources/notebooks/(Clone) Untitled Notebook 2026-02-17 19_05_36.iypnb
+            base_parameters:
+              notebook_param1: zzz
+              notebook_param2: "{{tasks.ttt222.values.fave_food}}"
+            source: WORKSPACE
+      queue:
+        enabled: true
+      parameters:
+        - name: job_param1
+          default: "1000"
+      performance_target: PERFORMANCE_OPTIMIZED

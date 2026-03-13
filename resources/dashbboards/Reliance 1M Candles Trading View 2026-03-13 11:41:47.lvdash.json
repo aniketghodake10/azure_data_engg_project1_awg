@@ -1,0 +1,84 @@
+{
+  "datasets": [
+    {
+      "name": "aef2192d",
+      "displayName": "samco 1m candle reliance",
+      "queryLines": [
+        "select * from samco_1m_candles_reliance\r\n",
+        "order by trade_time desc"
+      ],
+      "catalog": "main",
+      "schema": "default"
+    }
+  ],
+  "pages": [
+    {
+      "name": "82d9cb96",
+      "displayName": "Samco Aniket trading view",
+      "layout": [
+        {
+          "widget": {
+            "name": "ef3934fc",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "aef2192d",
+                  "fields": [
+                    {
+                      "name": "trade_time",
+                      "expression": "`trade_time`"
+                    },
+                    {
+                      "name": "close",
+                      "expression": "`close`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Reliance Close Price",
+                "showTitle": true
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "trade_time",
+                  "displayName": "Trade Time",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "close",
+                  "displayName": "Close",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

@@ -2,8 +2,7 @@ bundle:
   name: dabtutorial
 
 include:
-  - resources/*.yml
-  - resources/*/*.yml
+  - dab_yamls/*.yml
 
 # Variable declarations. These variables are assigned in the dev/prod targets below.
 # variables:
@@ -11,6 +10,11 @@ include:
 #     description: The catalog to use
 #   schema:
 #     description: The schema to use
+
+variables:
+  cluster_id:
+    description: The ID of the existing cluster (by defualt test learning all purpose cluster)
+    default: 0214-161416-v7ftfov6
 
 targets:
   dev:
@@ -22,6 +26,8 @@ targets:
     default: true
     workspace:
       host: https://adb-7405616918812103.3.azuredatabricks.net
+    variables:
+      cluster_id: XXX-LOL-I-HAVE-NO-CLUSTER
     # variables:
     #   catalog: dabtutorial_cata
     #   schema: ${workspace.current_user.short_name}
